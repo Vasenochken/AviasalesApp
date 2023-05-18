@@ -1,0 +1,46 @@
+{
+  "env": {
+      "browser": true,
+      "es2021": true 
+  },
+  "ignorePatterns": ["node_modules", "dist", "build"],
+  "extends": [ 
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:prettier/recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "prettier"
+  ],
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+      "presets": ["@babel/preset-react"],
+      "plugins": ["jsx"],
+      "requireConfigFile": false,
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
+  },
+  "plugins": [
+      "react", 
+      "prettier",
+      "import"
+  ],
+  "rules": {
+      "prettier/prettier": "error",
+      "react/prop-types": 0
+  },
+  "settings": {
+    "react": {
+        "version": "detect"
+    },
+    "import/resolver": {
+        "node": {
+            "extensions": [".js", ".jsx", ".ts", ".tsx"],
+            "moduleDirectory": ["node_modules", "src/"]
+        }
+    }
+  }
+}
