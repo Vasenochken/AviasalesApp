@@ -1,11 +1,15 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import * as actions from '../../redux/actions/actionCreators.js'
 import classes from './filter-transfer.module.scss'
 
-const FilterTransfer = ({ toggleFilter, filter }) => {
+const FilterTransfer = () => {
+  const filter = useSelector((state) => state.reducerFilter)
+  const { toggleFilter } = actions
+  const dispatch = useDispatch()
+
   const handleChange = (value) => {
-    toggleFilter(value)
+    dispatch(toggleFilter(value))
   }
   return (
     <div className={classes.filter}>
@@ -29,8 +33,4 @@ const FilterTransfer = ({ toggleFilter, filter }) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return { filter: state.reducerFilter }
-}
-
-export default connect(mapStateToProps, actions)(FilterTransfer)
+export default FilterTransfer

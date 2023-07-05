@@ -36,18 +36,21 @@ const getData = async (id, dispatch) => {
   try {
     const response = await getTickets(id)
     const { tickets, stop } = response
-    if (stop) return dispatch.fetchTicketsRequest()
+    if (stop) return dispatch(fetchTicketsRequest())
     else if (tickets.length) {
-      dispatch.fetchTicketsSuccess(tickets)
+      dispatch(fetchTicketsSuccess(tickets))
       getData(id, dispatch)
     }
   } catch (e) {
-    if (e === true) return dispatch.fetchTicketsFailure(e)
+    console.log(e.message)
+    if (e === true) return dispatch(fetchTicketsFailure(e))
     getData(id, dispatch)
   }
 }
 
-export const getDataId = async (dispatch) => {
-  const id = await getSearchId()
-  await getData(id, dispatch)
+export const getDataId = () => {
+  return async (dispatch) => {
+    const id = await getSearchId()
+    await getData(id, dispatch)
+  }
 }

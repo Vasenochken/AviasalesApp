@@ -4,6 +4,7 @@ import classes from './ticket.module.scss'
 
 const Ticket = ({ item }) => {
   const { price, segments, carrier } = item
+
   const priceFormat = (price) => {
     return `${price
       .toString()
