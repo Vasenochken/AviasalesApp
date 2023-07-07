@@ -12,13 +12,6 @@ export const AlertAttention = () => {
   )
 }
 
-export const AlertError = () => {
-  return (
-    <Alert
-      message="Error"
-      description="Something was wrong"
-      type="error"
-      showIcon
-    />
-  )
+export const AlertError = ({ message }) => {
+  return <Alert message="Error" description={message} type="error" showIcon />
 }

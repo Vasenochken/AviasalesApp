@@ -42,9 +42,12 @@ const getData = async (id, dispatch) => {
       getData(id, dispatch)
     }
   } catch (e) {
-    console.log(e.message)
-    if (e === true) return dispatch(fetchTicketsFailure(e))
-    getData(id, dispatch)
+    if (e.message === 'Status code 500') {
+      console.error(e.message)
+      getData(id, dispatch)
+    } else {
+      dispatch(fetchTicketsFailure(e.message))
+    }
   }
 }
 
